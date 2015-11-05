@@ -330,9 +330,6 @@ private DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel();
          
         while(resultado.next()){
                 String Nombre=null;
-                JComboBox asd= new JComboBox(comboBoxModel);
-                asd.addItem(Nombre);
-                asd.setModel(comboBoxModel);
                 jCB1.addItem(Nombre);
                 jCB2.addItem(Nombre);
               }
