@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.table.DefaultTableModel;
@@ -300,7 +301,7 @@ String z=resultado.getString("Nombre");
 
         
     }//GEN-LAST:event_jCB1MouseClicked
-
+private DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel();
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         
@@ -324,13 +325,16 @@ String z=resultado.getString("Nombre");
           Class.forName("com.mysql.jdbc.Driver");
           c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Equipos","root", "camilo");
           stmt = c.createStatement();
-          stmt.setQueryTimeout(30);
+          //stmt.setQueryTimeout(30);
      ResultSet resultado=stmt.executeQuery("SELECT Nombre FROM Equipos");    
          
         while(resultado.next()){
-                String names=null;
-                jCB1.addItem(names);
-                jCB2.addItem(names);
+                String Nombre=null;
+                JComboBox asd= new JComboBox(comboBoxModel);
+                asd.addItem(Nombre);
+                asd.setModel(comboBoxModel);
+                jCB1.addItem(Nombre);
+                jCB2.addItem(Nombre);
               }
 
         }
