@@ -27,7 +27,7 @@ public class EquiposDB{
           System.out.println("Conectado a Equipo.db");
 
           stmt = c.createStatement();
-          String sql = "CREATE TABLE IF NOT EXISTS "+nteam +
+          String sql = "CREATE TABLE IF NOT EXISTS Equipos" +
                        "(ID INT NOT NULL," +
                        " Nombre TEXT NOT NULL, " + 
                        " Formacion TEXT," + 
@@ -76,19 +76,36 @@ public class EquiposDB{
         System.out.println("Operation done successfully");
         return foo;
       }
+        public void asd() throws SQLException{
+            c = DriverManager.getConnection("jdbc:sqlite:Equipos.db");
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+        ResultSet resultado=stmt.executeQuery("SELECT ID FROM Equipos");          
+        while(resultado.next()){        
+            resultado.getInt(cont);
+            cont++;
+        }}
     
     public Boolean insertarEquipo(String name,String form,int h1, int h2, int h3, int h4) throws ClassNotFoundException, SQLException{
         Connection c = null;
         Statement stmt = null;
         Boolean boo = true;
         try{
-        
+        Class.forName("org.sqlite.JDBC");
+        c = DriverManager.getConnection("jdbc:sqlite:Equipos.db");
+        c.setAutoCommit(false);
+        stmt = c.createStatement();   
+            
+        if(cont==1){
+    asd();
+}
+            
        
         Class.forName("org.sqlite.JDBC");
         c = DriverManager.getConnection("jdbc:sqlite:Equipos.db");
         c.setAutoCommit(false);
         stmt = c.createStatement();
-        String sql = "INSERT INTO "+nteam+" (ID,Nombre,Formacion,Arquero,Defensor,Mediocampo,Ataque) " +
+        String sql = "INSERT INTO Equipos (ID,Nombre,Formacion,Arquero,Defensor,Mediocampo,Ataque) " +
         String.format("VALUES (%2d,'%s','%s',%2d,%2d,%2d,%2d);",cont,name,form,h1,h2,h3,h4); 
         stmt.executeUpdate(sql);
         cont++;

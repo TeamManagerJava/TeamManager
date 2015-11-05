@@ -107,7 +107,6 @@ public class PlantillasDB {
 if(cont==12){
     asd();
 }
-        
             String sql = "INSERT INTO "+nteam+" (ID,Nombre,Posicion,Arquero,Defensor,Mediocampo,Ataque,posX,posY)" +
             String.format("VALUES (%2d,'%s','%s',%2d,%2d,%2d,%2d,%2d,%2d);",cont,name,pos,h1,h2,h3,h4,posX,posY);
             cont++;
