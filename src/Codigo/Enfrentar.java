@@ -240,12 +240,12 @@ public class Enfrentar extends javax.swing.JFrame {
         
         
         try{
-          Class.forName("org.sqlite.JDBC");
-          c = DriverManager.getConnection("jdbc:sqlite:Equipos.db");
+          Class.forName("com.mysql.jdbc.Driver");
+          c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Equipos","root", "camilo");
           stmt = c.createStatement();
         Object j=jCB2.getSelectedItem();
         j.toString();
-          ResultSet resultado=stmt.executeQuery("SELECT Nombre,Arquero,Defensor,Mediocampo,Ataque FROM Boca and River"); 
+          ResultSet resultado=stmt.executeQuery("SELECT Nombre,Arquero,Defensor,Mediocampo,Ataque From Equipos"); 
 String z=resultado.getString("Nombre");
               
           while(resultado.next()){
@@ -321,11 +321,11 @@ String z=resultado.getString("Nombre");
          
          
         try{
-          Class.forName("org.sqlite.JDBC");
-          c = DriverManager.getConnection("jdbc:sqlite:Equipos.db");
+          Class.forName("com.mysql.jdbc.Driver");
+          c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Equipos","root", "camilo");
           stmt = c.createStatement();
-          //stmt.setQueryTimeout(30);
-     ResultSet resultado=stmt.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name!='android_metadata'");    
+          stmt.setQueryTimeout(30);
+     ResultSet resultado=stmt.executeQuery("SELECT Nombre FROM Equipos");    
          
         while(resultado.next()){
                 String names=null;
