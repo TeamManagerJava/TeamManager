@@ -270,8 +270,8 @@ public class Grafico extends javax.swing.JFrame {
          
          
         try{
-          Class.forName("org.sqlite.JDBC");
-          c = DriverManager.getConnection("jdbc:sqlite:Equipos.db");
+          Class.forName("com.mysql.jdbc.Driver");
+          c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Equipos","root", "camilo");
           stmt = c.createStatement();
           //stmt.setQueryTimeout(30);
           
@@ -319,7 +319,7 @@ public class Grafico extends javax.swing.JFrame {
 
         
         
-        
+       
         
         
         

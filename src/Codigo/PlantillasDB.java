@@ -21,7 +21,7 @@ import java.awt.Window;
 public class PlantillasDB {
     private Connection c;
     private Statement stmt;
-    private int cont=1;
+    
     
     
     public PlantillasDB(){
@@ -31,13 +31,14 @@ public class PlantillasDB {
     }
     public void CrearPlantilla (){
         try {
-          Class.forName("org.sqlite.JDBC");
-          c = DriverManager.getConnection("jdbc:sqlite:Plantilla.db");
+          Class.forName("com.mysql.jdbc.Driver");
+
+          c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Plantilla","root", "camilo");
           System.out.println("Tabla "+nteam+" Abierta");
 
           stmt = c.createStatement();
           String sql = "CREATE TABLE IF NOT EXISTS "+nteam +
-                       "(ID INT NOT NULL," +
+                       "(ID INT NOT NULL AUTO_INCREMENT," +
                        " Nombre TEXT NOT NULL, " + 
                        " Posicion TEXT, " + 
                        " Arquero INT, " + 
@@ -61,8 +62,8 @@ public class PlantillasDB {
     
     public ArrayList<String> getPlantillas() throws SQLException, ClassNotFoundException{
         ArrayList<String> foo = new ArrayList();
-        Class.forName("org.sqlite.JDBC");
-        c = DriverManager.getConnection("jdbc:sqlite:Plantilla.db");
+Class.forName("com.mysql.jdbc.Driver");
+          c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Plantilla","root", "camilo");
         c.setAutoCommit(false);
         System.out.println("Tabla Plantilla abierta");
         stmt = c.createStatement();
@@ -93,23 +94,27 @@ public class PlantillasDB {
         System.out.println("Operation done successfully");
         return foo;
       }
-    
+    private int cont=1;
+    private int conta=1;
     public Boolean insertarPlantilla(String name,String pos,int h1, int h2, int h3, int h4, int posX, int posY) throws ClassNotFoundException, SQLException{
+        
         Connection c = null;
         Statement stmt = null;
         Boolean boo = true;
         
         try{
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:Plantilla.db");
+          Class.forName("com.mysql.jdbc.Driver");
+          c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Plantilla","root", "camilo");
+           // for (int d = 0; d < 20; d++) {
+              // asd(); 
+          //  }
+           
             c.setAutoCommit(false);
             stmt = c.createStatement();
-if(cont==12){
-    asd();
-}
+            
             String sql = "INSERT INTO "+nteam+" (ID,Nombre,Posicion,Arquero,Defensor,Mediocampo,Ataque,posX,posY)" +
-            String.format("VALUES (%2d,'%s','%s',%2d,%2d,%2d,%2d,%2d,%2d);",cont,name,pos,h1,h2,h3,h4,posX,posY);
-            cont++;
+            String.format("VALUES (%2d,'%s','%s',%2d,%2d,%2d,%2d,%2d,%2d);",conta,name,pos,h1,h2,h3,h4,posX,posY);
+            conta++;
             stmt.executeUpdate(sql);
             System.out.println("Jugador insertado en plantilla");
             stmt.close();
@@ -127,13 +132,13 @@ if(cont==12){
     }
     
     public void asd() throws SQLException{
-            c = DriverManager.getConnection("jdbc:sqlite:Plantilla.db");
+            c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Plantilla","root", "camilo");
             c.setAutoCommit(false);
             stmt = c.createStatement();
-        ResultSet resultado=stmt.executeQuery("SELECT ID FROM Plantilla");          
+        ResultSet resultado=stmt.executeQuery("SELECT ID FROM ");          
         while(resultado.next()){        
-            resultado.getInt(cont);
-            cont++;
+            resultado.getInt(conta);
+            conta++;
         }
     }
     

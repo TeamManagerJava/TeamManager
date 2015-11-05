@@ -22,13 +22,13 @@ public class EquiposDB{
         c = null;
         stmt = null;
         try {
-          Class.forName("org.sqlite.JDBC");
-          c = DriverManager.getConnection("jdbc:sqlite:Equipos.db");
+          Class.forName("com.mysql.jdbc.Driver");
+          c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Equipos","root", "camilo");
           System.out.println("Conectado a Equipo.db");
 
           stmt = c.createStatement();
           String sql = "CREATE TABLE IF NOT EXISTS Equipos" +
-                       "(ID INT NOT NULL," +
+                       "(ID INT NOT NULL AUTO_INCREMENT," +
                        " Nombre TEXT NOT NULL, " + 
                        " Formacion TEXT," + 
                        " Arquero INT, " + 
@@ -76,8 +76,8 @@ public class EquiposDB{
         System.out.println("Operation done successfully");
         return foo;
       }
-        public void asd() throws SQLException{
-            c = DriverManager.getConnection("jdbc:sqlite:Equipos.db");
+        public void asd() throws SQLException{        
+          c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Equipos","root", "camilo");
             c.setAutoCommit(false);
             stmt = c.createStatement();
         ResultSet resultado=stmt.executeQuery("SELECT ID FROM Equipos");          
@@ -87,26 +87,25 @@ public class EquiposDB{
         }}
     
     public Boolean insertarEquipo(String name,String form,int h1, int h2, int h3, int h4) throws ClassNotFoundException, SQLException{
+        
         Connection c = null;
         Statement stmt = null;
         Boolean boo = true;
         try{
-        Class.forName("org.sqlite.JDBC");
-        c = DriverManager.getConnection("jdbc:sqlite:Equipos.db");
-        c.setAutoCommit(false);
-        stmt = c.createStatement();   
+       // for (int d = 2; d < 20; d++) {
+          ///    asd();
+          //  }
+
             
-        if(cont==1){
-    asd();
-}
+
             
-       
-        Class.forName("org.sqlite.JDBC");
-        c = DriverManager.getConnection("jdbc:sqlite:Equipos.db");
+       System.out.println(cont);
+         Class.forName("com.mysql.jdbc.Driver");
+        c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Equipos","root", "camilo");
         c.setAutoCommit(false);
         stmt = c.createStatement();
-        String sql = "INSERT INTO Equipos (ID,Nombre,Formacion,Arquero,Defensor,Mediocampo,Ataque) " +
-        String.format("VALUES (%2d,'%s','%s',%2d,%2d,%2d,%2d);",cont,name,form,h1,h2,h3,h4); 
+        String sql = "INSERT INTO Equipos (Nombre,Formacion,Arquero,Defensor,Mediocampo,Ataque) " +
+        String.format("VALUES ('%s','%s',%2d,%2d,%2d,%2d);",name,form,h1,h2,h3,h4); 
         stmt.executeUpdate(sql);
         cont++;
         System.out.println("Equipo insertado ");
