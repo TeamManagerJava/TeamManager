@@ -127,8 +127,8 @@ public class Nueva extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Cabin", 0, 24)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/nueva.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, -10, 70, 70));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/txtlogo.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 370, 70));
 
         jButton1.setText("←");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(232, 72, 51)));
